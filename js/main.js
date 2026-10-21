@@ -174,3 +174,31 @@ const PROMO = {
   const row = list.querySelector('[data-day="' + today + '"]');
   if (row) row.classList.add("is-today");
 })();
+
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const targets = document.querySelectorAll(
+    ".section, .menu-board, .loyalty-card, .map-embed, .photo-grid figure, .home-tiles .tile, .news-spotlight, .about-story"
+  );
+  if (!targets.length || !("IntersectionObserver" in window)) return;
+
+  targets.forEach(function (el) {
+    el.classList.add("reveal");
+  });
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+  );
+
+  targets.forEach(function (el) {
+    observer.observe(el);
+  });
+})();
