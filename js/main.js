@@ -196,13 +196,28 @@ const PROMO = {
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  document.documentElement.classList.add("motion-ready");
+
   const targets = document.querySelectorAll(
-    ".section, .menu-board, .loyalty-card, .map-embed, .photo-grid figure, .home-tiles .tile, .news-spotlight, .about-story"
+    ".section, .menu-board, .loyalty-card, .map-embed, .photo-grid figure, .home-tiles .tile, .news-spotlight, .news-photo, .about-story, .contact-grid > *"
   );
   if (!targets.length || !("IntersectionObserver" in window)) return;
 
-  targets.forEach(function (el) {
+  targets.forEach(function (el, index) {
     el.classList.add("reveal");
+    if (el.classList.contains("news-photo") || el.classList.contains("tile-green")) {
+      el.classList.add("reveal-right");
+    } else if (el.classList.contains("news-spotlight") || el.classList.contains("tile-beige")) {
+      el.classList.add("reveal-left");
+    } else if (el.classList.contains("menu-board") || el.classList.contains("loyalty-card")) {
+      el.classList.add("reveal-scale");
+    }
+    el.style.setProperty("--reveal-delay", Math.min(index * 0.04, 0.28) + "s");
+  });
+
+  document.querySelectorAll(".price-list li, .stamps li, .hours-list li, .news-offers li").forEach(function (el, index) {
+    el.classList.add("stagger-child");
+    el.style.setProperty("--stagger", (index % 8) * 0.06 + "s");
   });
 
   const observer = new IntersectionObserver(
@@ -210,13 +225,22 @@ const PROMO = {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         entry.target.classList.add("is-visible");
+        entry.target.querySelectorAll(".stagger-child").forEach(function (child) {
+          child.classList.add("is-visible");
+        });
         observer.unobserve(entry.target);
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+    { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
   );
 
   targets.forEach(function (el) {
+    observer.observe(el);
+  });
+
+  /* Stagger items that sit outside reveal parents */
+  document.querySelectorAll(".stagger-child").forEach(function (el) {
+    if (el.closest(".reveal")) return;
     observer.observe(el);
   });
 })();

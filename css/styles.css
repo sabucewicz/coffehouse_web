@@ -1184,7 +1184,8 @@ h3 {
   margin: 0;
   border-radius: 1.5rem;
   overflow: hidden;
-  box-shadow: 0 18px 48px color-mix(in srgb, var(--color-green) 14%, transparent);
+  background: var(--color-green);
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--color-green) 22%, transparent);
   animation: rise-in 0.8s var(--ease-out) 0.08s both;
   min-height: 16rem;
 }
@@ -1194,7 +1195,9 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   aspect-ratio: 4 / 5;
+  background: var(--color-green);
   transition: transform 0.55s var(--ease-out);
 }
 
@@ -1419,94 +1422,379 @@ h3 {
 }
 
 /* Live page motion */
-.page-intro {
-  animation: rise-in 0.65s var(--ease-out) both;
+@keyframes soft-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-0.85rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes glide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-1.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes glide-right {
+  from {
+    opacity: 0;
+    transform: translateX(1.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, currentColor 18%, transparent),
+      0 0 18px color-mix(in srgb, currentColor 12%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, currentColor 28%, transparent),
+      0 0 28px color-mix(in srgb, currentColor 22%, transparent);
+  }
+}
+
+@keyframes stamp-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.site-header {
+  animation: slide-down 0.6s var(--ease-out) both;
 }
 
 .logo {
-  transition: transform 0.35s var(--ease-out);
+  transition: transform 0.4s var(--ease-out), filter 0.4s ease;
 }
 
 .logo:hover {
-  transform: scale(1.04);
+  transform: scale(1.05) rotate(-1.5deg);
 }
+
+.logo img {
+  transition: transform 0.45s var(--ease-out);
+}
+
+.logo:hover img {
+  transform: rotate(12deg) scale(1.06);
+}
+
+.site-nav li {
+  animation: rise-in 0.55s var(--ease-out) both;
+}
+
+.site-nav li:nth-child(1) { animation-delay: 0.05s; }
+.site-nav li:nth-child(2) { animation-delay: 0.1s; }
+.site-nav li:nth-child(3) { animation-delay: 0.15s; }
+.site-nav li:nth-child(4) { animation-delay: 0.2s; }
+.site-nav li:nth-child(5) { animation-delay: 0.25s; }
+.site-nav li:nth-child(6) { animation-delay: 0.3s; }
+.site-nav li:nth-child(7) { animation-delay: 0.35s; }
 
 .site-nav a {
   transition:
     background-color 0.2s ease,
-    box-shadow 0.25s var(--ease-out);
+    box-shadow 0.3s var(--ease-out),
+    letter-spacing 0.3s var(--ease-out);
 }
 
 .site-nav a:hover {
   box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 18%, transparent);
+  letter-spacing: 0.02em;
+}
+
+.page-intro {
+  animation: rise-in 0.7s var(--ease-out) both;
+}
+
+.page-intro h1 {
+  animation: glide-left 0.75s var(--ease-out) 0.05s both;
+}
+
+.page-intro .lead {
+  animation: rise-in 0.75s var(--ease-out) 0.14s both;
+}
+
+.page-intro .hero-actions,
+.page-intro > .btn {
+  animation: rise-in 0.75s var(--ease-out) 0.24s both;
+}
+
+.brand-mark {
+  animation: rise-in 0.7s var(--ease-out) both, breathe 5.5s ease-in-out 1s infinite;
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    color-mix(in srgb, #fff 28%, transparent) 48%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.55s var(--ease-out);
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  transform: translateX(120%);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
 }
 
 .menu-board .price-list li {
-  transition: padding-left 0.25s var(--ease-out), background-color 0.25s ease;
+  transition:
+    padding-left 0.3s var(--ease-out),
+    background-color 0.25s ease,
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
   border-radius: 0.5rem;
 }
 
 .menu-board .price-list li:hover {
-  padding-left: 0.45rem;
-  background: color-mix(in srgb, currentColor 6%, transparent);
+  padding-left: 0.55rem;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  transform: translateX(0.2rem);
+  box-shadow: -3px 0 0 currentColor;
 }
 
 .map-embed {
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out);
 }
 
 .map-embed:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.01);
   box-shadow:
     inset 0 0 0 1.5px color-mix(in srgb, currentColor 22%, transparent),
-    0 14px 32px color-mix(in srgb, currentColor 12%, transparent);
+    0 16px 36px color-mix(in srgb, currentColor 14%, transparent);
 }
 
 .loyalty-card {
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
 }
 
 .loyalty-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px color-mix(in srgb, currentColor 12%, transparent);
+  transform: translateY(-4px) rotate(-0.4deg);
+  box-shadow: 0 16px 34px color-mix(in srgb, currentColor 14%, transparent);
 }
+
+.stamps li.stamp-reward {
+  animation: stamp-pop 2.4s ease-in-out infinite;
+}
+
+.stamps li.stamp-reward:nth-child(10) {
+  animation-delay: 0.35s;
+}
+
+.hours-list li.is-today {
+  animation: glow-pulse 2.8s ease-in-out infinite;
+}
+
+.social-link {
+  transition:
+    background-color 0.2s ease,
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+}
+
+.social-link:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 18px color-mix(in srgb, currentColor 16%, transparent);
+}
+
+.social-link:hover .social-icon {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+.social-icon {
+  transition: transform 0.35s var(--ease-out);
+}
+
+.tile {
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
+    background-color 0.25s ease;
+}
+
+.tile:hover {
+  transform: translateY(-8px) scale(1.015);
+}
+
+.contact-list li {
+  transition: transform 0.3s var(--ease-out);
+}
+
+.contact-list li:hover {
+  transform: translateX(0.35rem);
+}
+
+.footer-inner > * {
+  animation: rise-in 0.7s var(--ease-out) both;
+}
+
+.footer-inner > *:nth-child(1) { animation-delay: 0.05s; }
+.footer-inner > *:nth-child(2) { animation-delay: 0.15s; }
+.footer-inner > *:nth-child(3) { animation-delay: 0.25s; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(1.15rem);
+  transform: translateY(1.35rem);
+  filter: blur(4px);
   transition:
-    opacity 0.65s var(--ease-out),
-    transform 0.65s var(--ease-out);
+    opacity 0.75s var(--ease-out),
+    transform 0.75s var(--ease-out),
+    filter 0.75s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal-left {
+  transform: translateX(-1.5rem);
+}
+
+.reveal-right {
+  transform: translateX(1.5rem);
+}
+
+.reveal-scale {
+  transform: scale(0.94);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+  filter: none;
+}
+
+.stagger-child {
+  opacity: 0;
+  transform: translateY(0.85rem);
+  transition:
+    opacity 0.55s var(--ease-out),
+    transform 0.55s var(--ease-out);
+  transition-delay: var(--stagger, 0s);
+}
+
+.stagger-child.is-visible,
+.is-visible .stagger-child,
+.reveal.is-visible .stagger-child {
+  opacity: 1;
+  transform: none;
 }
 
 .news-spotlight {
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out);
 }
 
 .news-spotlight:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow:
     inset 0 0 0 1px color-mix(in srgb, var(--color-green) 14%, transparent),
-    0 22px 52px color-mix(in srgb, var(--color-green) 16%, transparent);
+    0 24px 56px color-mix(in srgb, var(--color-green) 18%, transparent);
+}
+
+.news-photo {
+  transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out);
+}
+
+.news-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 56px color-mix(in srgb, var(--color-green) 26%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-nav li,
   .page-intro,
-  .reveal {
+  .page-intro h1,
+  .page-intro .lead,
+  .page-intro .hero-actions,
+  .page-intro > .btn,
+  .brand-mark,
+  .footer-inner > *,
+  .reveal,
+  .stagger-child,
+  .stamps li.stamp-reward,
+  .hours-list li.is-today,
+  .menu-board.is-visible {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     transition: none !important;
   }
 
   .photo-grid figure:hover img,
   .media-block:hover img,
-  .hero-visual:hover img {
-    transform: none;
+  .hero-visual:hover img,
+  .btn:hover,
+  .tile:hover,
+  .logo:hover,
+  .logo:hover img {
+    transform: none !important;
+  }
+
+  .btn::after {
+    display: none;
   }
 }
