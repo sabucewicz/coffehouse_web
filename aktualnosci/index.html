@@ -18,8 +18,13 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body class="theme-beige">
+<body class="theme-beige page-news">
   <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <!-- TODO: przy zmianie sezonu podmień zdjęcie tła i treść poniżej -->
+  <div class="page-bg" aria-hidden="true">
+    <img src="../images/aktualnosci/jesienny-bukiet.jpg" alt="" width="1200" height="1500">
+  </div>
 
   <header class="site-header">
     <div class="header-inner">
@@ -42,94 +47,23 @@
   </header>
 
   <main id="main" class="site-main">
-    <header class="page-intro">
-      <h1>Aktualności</h1>
-      <p class="lead">Tu wrzucamy to, co dzieje się teraz — sezonowe bukiety, nowe desery i oferty na święta. Zerknij przed wizytą.</p>
-    </header>
-
-    <!-- TODO: podmieniaj wpisy poniżej na bieżące oferty (Walentynki, Halloween itd.) -->
-    <div class="news-list">
-      <article class="news-item news-item--featured" id="jesien">
-        <div class="news-item-media">
-          <img src="../images/aktualnosci/jesienny-bukiet.jpg" alt="Jesienna kompozycja z kasztanami i suszonymi kwiatami" width="800" height="1000" loading="eager">
-        </div>
-        <div class="news-item-body">
-          <p class="news-meta"><time datetime="2026-10">Październik 2026</time> · Kwiaciarnia</p>
-          <h2>Jesienna oferta florystyczna</h2>
-          <p>Kompozycje z kasztanami, orzechami i suszonymi kwiatami — ciepło jesieni w doniczce albo na stole. Zamówienia przyjmujemy na bieżąco.</p>
-          <a class="btn btn-primary" href="../kontakt/">Zapytaj o bukiet</a>
-        </div>
-      </article>
-
-      <article class="news-item" id="mech">
-        <div class="news-item-media">
-          <img src="../images/aktualnosci/kompozycja-mech.jpg" alt="Kompozycja z mchem i kremowymi różami" width="800" height="1000" loading="lazy">
-        </div>
-        <div class="news-item-body">
-          <p class="news-meta"><time datetime="2026-10">Październik 2026</time> · Kwiaciarnia</p>
-          <h2>Mech i róże</h2>
-          <p>Dekoracje z żywego mchu i kremowych róż — idealne na prezent albo jako ozdoba salonu.</p>
-        </div>
-      </article>
-
-      <article class="news-item" id="kale">
-        <div class="news-item-media">
-          <img src="../images/aktualnosci/kale-roze.jpg" alt="Kompozycja z różowymi kalami i eukaliptusem" width="800" height="1000" loading="lazy">
-        </div>
-        <div class="news-item-body">
-          <p class="news-meta"><time datetime="2026-10">Październik 2026</time> · Kwiaciarnia</p>
-          <h2>Kale i zielenina</h2>
-          <p>Wysokie kompozycje z kalami w odcieniu dusty rose — na przyjęcia i wyjątkowe okazje.</p>
-        </div>
-      </article>
-
-      <article class="news-item" id="paleta">
-        <div class="news-item-media">
-          <img src="../images/aktualnosci/paleta-kwiatow.jpg" alt="Bukiet na drewnianej palecie malarskiej" width="800" height="1000" loading="lazy">
-        </div>
-        <div class="news-item-body">
-          <p class="news-meta"><time datetime="2026-10">Październik 2026</time> · Kwiaciarnia</p>
-          <h2>Florystyka artystyczna</h2>
-          <p>Kwiaty na palecie malarskiej — pomysł na oryginalny prezent dla miłośników sztuki.</p>
-        </div>
-      </article>
-
-      <article class="news-item" id="desery">
-        <div class="news-item-media news-item-media--grid">
-          <img src="../images/aktualnosci/tarta-jagody.jpg" alt="Tarta z malinami i jagodami" width="600" height="600" loading="lazy">
-          <img src="../images/aktualnosci/tarta-owoce.jpg" alt="Tarta z truskawkami, borówkami i kokosem" width="600" height="600" loading="lazy">
-        </div>
-        <div class="news-item-body">
-          <p class="news-meta"><time datetime="2026-10">Październik 2026</time> · Kawiarnia</p>
-          <h2>Słodkości dnia</h2>
-          <p>Tarty z owocami sezonowymi i domową bitą śmietaną. Asortyment zmienia się — pytaj przy barze, co dziś pieczemy.</p>
-          <a class="btn btn-ghost" href="../kawiarnia/">Zobacz menu</a>
-        </div>
-      </article>
-
-      <article class="news-item" id="taras">
-        <div class="news-item-media">
-          <img src="../images/aktualnosci/kawa-na-tarasie.jpg" alt="Kawa na tarasie Kawonii" width="800" height="1000" loading="lazy">
-        </div>
-        <div class="news-item-body">
-          <p class="news-meta"><time datetime="2026-10">Październik 2026</time> · Kawiarnia</p>
-          <h2>Kawa na tarasie</h2>
-          <p>Dopóki pogoda pozwala — zapraszamy na stolik na zewnątrz. Latte, herbata i chwila spokoju.</p>
-          <a class="btn btn-ghost" href="../rezerwacja/">Zarezerwuj stolik</a>
-        </div>
-      </article>
-
-      <article class="news-item" id="sliders">
-        <div class="news-item-media">
-          <img src="../images/aktualnosci/mini-burgery.jpg" alt="Mini burgery na papierze" width="800" height="600" loading="lazy">
-        </div>
-        <div class="news-item-body">
-          <p class="news-meta"><time datetime="2026-10">Październik 2026</time> · Kawiarnia</p>
-          <h2>Coś na słono</h2>
-          <p>Mini burgery i przekąski — sprawdzaj aktualną ofertę w lokalu. Idealne do kawy w gronie znajomych.</p>
-        </div>
-      </article>
-    </div>
+    <article class="news-spotlight">
+      <p class="news-spotlight-eyebrow">Październik · sezon jesienny</p>
+      <h1>Jesień w Kawonii</h1>
+      <p class="lead">Ciepłe odcienie, kasztany, suszone kwiaty i zapach świeżej kawy. To czas na spokojne popołudnia przy stole i bukiety, które rozjaśniają chłodniejsze dni.</p>
+      <p>W kwiaciarni przygotowujemy jesienne kompozycje — mech, orzechy, kremowe róże i kale. W kawiarni czekają sezonowe desery i klasyka: latte, cappuccino, coś na słodko albo na słono.</p>
+      <h2>Oferty na teraz</h2>
+      <ul class="news-offers">
+        <li>Jesienne bukiety i kompozycje w doniczce — od ręki i na zamówienie</li>
+        <li>Dekoracje z mchem i suszem — idealne na prezent</li>
+        <li>Tarty owocowe i ciasta dnia — pytaj przy barze</li>
+        <li>Kawa na tarasie, dopóki pogoda pozwala</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="../kwiaciarnia/">Menu kwiaciarni</a>
+        <a class="btn btn-ghost" href="../kawiarnia/">Menu kawiarni</a>
+      </div>
+    </article>
   </main>
 
   <footer class="site-footer">

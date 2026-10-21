@@ -166,3 +166,11 @@ const PROMO = {
     }
   });
 })();
+
+(function () {
+  const list = document.querySelector("[data-highlight-today]");
+  if (!list) return;
+  const today = String(new Date().getDay());
+  const row = list.querySelector('[data-day="' + today + '"]');
+  if (row) row.classList.add("is-today");
+})();

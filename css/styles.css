@@ -835,6 +835,38 @@ h3 {
   text-decoration: none;
 }
 
+.social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  margin-top: 0.35rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  padding: 0.35rem 0.7rem 0.35rem 0.4rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.social-link:hover {
+  background: color-mix(in srgb, currentColor 16%, transparent);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.social-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+}
+
 .hours-list {
   list-style: none;
   margin: 0;
@@ -845,8 +877,27 @@ h3 {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.4rem 0;
+  padding: 0.55rem 0.75rem;
+  margin: 0 -0.75rem;
+  border-radius: 0.75rem;
   border-bottom: 1px dashed color-mix(in srgb, currentColor 25%, transparent);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hours-list li.is-today {
+  border-bottom-color: transparent;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, currentColor 18%, transparent),
+    0 0 22px color-mix(in srgb, currentColor 16%, transparent);
+  font-weight: 700;
+}
+
+.theme-green .hours-list li.is-today {
+  background: color-mix(in srgb, var(--color-beige) 14%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-beige) 28%, transparent),
+    0 0 24px color-mix(in srgb, var(--color-beige) 18%, transparent);
 }
 
 .map-embed {
@@ -1009,78 +1060,163 @@ h3 {
   opacity: 0.85;
 }
 
-/* Aktualności */
-.news-list {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 6vw, 4rem);
+/* Aktualności — zamglone tło */
+.page-news {
+  background-image: none;
 }
 
-.news-item {
-  display: grid;
-  gap: 1.25rem 1.75rem;
-  align-items: center;
+.page-news::before {
+  opacity: 0.12;
 }
 
-@media (min-width: 720px) {
-  .news-item {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  }
-
-  .news-item:nth-child(even) .news-item-media {
-    order: 2;
-  }
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.news-item--featured .news-item-body h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+.page-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(36px) saturate(1.08) brightness(0.92);
+  transform: scale(1.14);
 }
 
-.news-meta {
-  margin: 0 0 0.4rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+.page-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(165deg, color-mix(in srgb, var(--color-beige) 72%, transparent), color-mix(in srgb, var(--color-beige-deep) 58%, transparent)),
+    radial-gradient(ellipse 70% 50% at 80% 10%, color-mix(in srgb, #fff 35%, transparent), transparent 60%);
+}
+
+.news-spotlight {
+  position: relative;
+  z-index: 1;
+  max-width: 38rem;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border-radius: 1.5rem;
+  background: color-mix(in srgb, var(--color-beige-soft) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(1.1);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-green) 12%, transparent),
+    0 18px 48px color-mix(in srgb, var(--color-green) 12%, transparent);
+  animation: rise-in 0.7s var(--ease-out) both;
+}
+
+.news-spotlight-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.65;
 }
 
-.news-item-body h2 {
-  margin: 0 0 0.65rem;
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+.news-spotlight h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.1rem, 5vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
-.news-item-body p {
-  margin: 0 0 1.15rem;
+.news-spotlight .lead {
+  margin-bottom: 1rem;
+}
+
+.news-spotlight p {
+  margin: 0 0 1rem;
   max-width: 34rem;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: color-mix(in srgb, currentColor 88%, transparent);
 }
 
-.news-item-media {
-  margin: 0;
-  border-radius: 1.25rem;
-  overflow: hidden;
+.news-spotlight h2 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1.25rem;
 }
 
-.news-item-media img {
-  display: block;
-  width: 100%;
+.news-offers {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.news-offers li {
+  position: relative;
+  padding: 0.45rem 0 0.45rem 1.15rem;
+  border-bottom: 1px dashed color-mix(in srgb, currentColor 22%, transparent);
+  font-weight: 500;
+}
+
+.news-offers li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.95rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.page-news .site-footer {
+  background: color-mix(in srgb, var(--color-beige) 70%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+/* O nas */
+.about-story {
+  max-width: 40rem;
+  animation: rise-in 0.85s var(--ease-out) 0.12s both;
+}
+
+.about-story p {
+  margin: 0 0 1rem;
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+.about-story .hero-actions {
+  margin-top: 1.25rem;
+}
+
+.site-main--home .hero-visual img {
   aspect-ratio: 4 / 5;
   object-fit: cover;
 }
 
-.news-item-media--grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.65rem;
+/* Menu board (kawiarnia / kwiaciarnia) */
+.menu-board {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: 1.5rem;
+  background: color-mix(in srgb, currentColor 5%, transparent);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, currentColor 14%, transparent);
 }
 
-.news-item-media--grid img {
-  aspect-ratio: 1;
+.theme-beige .menu-board {
+  background: color-mix(in srgb, #fff 55%, var(--color-beige-soft));
+}
+
+.theme-green .menu-board {
+  background: color-mix(in srgb, var(--color-green-deep) 35%, transparent);
+}
+
+.menu-board h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.menu-board .price-list {
+  margin-bottom: 2rem;
+}
+
+.menu-board .menu-grid > div:last-child .price-list:last-child {
+  margin-bottom: 0;
 }
 
 /* Promo popup (aktualna oferta) */
