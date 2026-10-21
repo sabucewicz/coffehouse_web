@@ -836,136 +836,36 @@ h3 {
   text-decoration: none;
 }
 
-.social-intro {
-  margin-bottom: 1.25rem;
-}
-
-.social-embeds {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 860px) {
-  .social-embeds {
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-  }
-}
-
-.social-embed {
-  border-radius: 1.25rem;
-  overflow: hidden;
-  background: #fff;
-  color: #1a1a1a;
-  box-shadow: 0 16px 40px color-mix(in srgb, #000 18%, transparent);
-  min-height: 28rem;
-}
-
-.social-embed--fb {
+.social-row {
   display: flex;
-  background: #f0f2f5;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  margin-top: 0.35rem;
 }
 
-.social-embed--fb iframe {
-  display: block;
-  width: 100% !important;
-  min-height: 35rem;
-  border: 0;
-  flex: 1;
-}
-
-.ig-profile {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
-  background: #fafafa;
-  transition: transform 0.25s var(--ease-out);
-}
-
-.ig-profile:hover {
-  text-decoration: none;
-  transform: translateY(-2px);
-}
-
-.ig-profile-cover {
-  height: 8.5rem;
-  overflow: hidden;
-}
-
-.ig-profile-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.ig-profile-head {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 0.75rem;
+.social-link {
+  display: inline-flex;
   align-items: center;
-  padding: 0 1.1rem;
-  margin-top: -2rem;
-}
-
-.ig-profile-avatar {
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #fff;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 14px color-mix(in srgb, #000 12%, transparent);
-}
-
-.ig-profile-meta {
-  min-width: 0;
-  padding-top: 1.75rem;
-}
-
-.ig-profile-name {
-  margin: 0;
-  font-weight: 700;
+  gap: 0.45rem;
+  font-weight: 600;
   font-size: 1.05rem;
-  line-height: 1.2;
+  text-decoration: none;
+  padding: 0.35rem 0.7rem 0.35rem 0.4rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.ig-profile-handle {
-  margin: 0.15rem 0 0;
-  font-size: 0.85rem;
-  opacity: 0.65;
+.social-link:hover {
+  background: color-mix(in srgb, currentColor 16%, transparent);
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
-.ig-profile-cta {
-  margin-top: 1.75rem;
-  padding: 0.45rem 0.95rem;
-  border-radius: 0.55rem;
-  background: #0095f6;
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.ig-profile-bio {
-  margin: 0.85rem 1.1rem 1rem;
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
-
-.ig-profile-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.2rem;
-  margin-top: auto;
-}
-
-.ig-profile-grid img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  display: block;
+.social-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
 }
 
 .hours-list {
