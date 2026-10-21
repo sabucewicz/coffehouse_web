@@ -1,0 +1,6 @@
+# TODO: before publish — remove Disallow and update Sitemap URL to the real domain
+User-agent: *
+Disallow: /
+
+# Sitemap: https://www.example.com/sitemap.xml
+Sitemap: https://www.example.com/sitemap.xml

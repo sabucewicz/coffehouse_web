@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-labelledby="cafeTitle">
+  <title id="cafeTitle">Wntrze kawiarni  za[lepka</title>
+  <defs>
+    <pattern id="wood" width="40" height="8" patternUnits="userSpaceOnUse">
+      <rect width="40" height="8" fill="#e8ddd0"/>
+      <line x1="0" y1="7" x2="40" y2="7" stroke="#044838" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" rx="24" fill="#f4ece2"/>
+  <rect y="320" width="800" height="180" fill="url(#wood)"/>
+  <rect x="60" y="80" width="280" height="200" rx="12" fill="#044838" opacity="0.15"/>
+  <rect x="380" y="100" width="160" height="180" rx="8" fill="#044838" opacity="0.2"/>
+  <rect x="560" y="90" width="180" height="190" rx="8" fill="#044838" opacity="0.12"/>
+  <ellipse cx="200" cy="360" rx="70" ry="18" fill="#044838" opacity="0.12"/>
+  <rect x="160" y="280" width="80" height="80" rx="6" fill="#044838" opacity="0.35"/>
+  <circle cx="650" cy="200" r="40" fill="#044838" opacity="0.25"/>
+  <text x="400" y="460" text-anchor="middle" font-family="Barlow, system-ui, sans-serif" font-size="32" font-weight="700" fill="#044838" opacity="0.5">Wntrze kawiarni</text>
+</svg>

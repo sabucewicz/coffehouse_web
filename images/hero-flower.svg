@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="480" height="480" role="img" aria-labelledby="heroTitle">
+  <title id="heroTitle">Du|y kwiat dekoracyjny</title>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.5" fill="#044838" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="480" height="480" rx="32" fill="#e8ddd0"/>
+  <rect width="480" height="480" rx="32" fill="url(#dots)"/>
+  <g transform="translate(240 220)">
+    <g fill="#044838">
+      <ellipse cx="0" cy="-90" rx="48" ry="78"/>
+      <ellipse cx="0" cy="-90" rx="48" ry="78" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-90" rx="48" ry="78" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-90" rx="48" ry="78" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-90" rx="48" ry="78" transform="rotate(288)"/>
+    </g>
+    <ellipse cx="0" cy="0" rx="52" ry="36" fill="#f4ece2" transform="rotate(-35)"/>
+    <path d="M-28 -18 Q0 10 28 18" fill="none" stroke="#044838" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <text x="240" y="420" text-anchor="middle" font-family="Barlow, system-ui, sans-serif" font-size="28" font-weight="600" fill="#044838" opacity="0.45">kawa � kwiaty</text>
+</svg>

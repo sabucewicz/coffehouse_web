@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="logoLightTitle">
+  <title id="logoLightTitle">Kawonia  kwiat z ziarnem kawy</title>
+  <g fill="#f4ece2">
+    <ellipse cx="32" cy="14" rx="10" ry="14"/>
+    <ellipse cx="32" cy="14" rx="10" ry="14" transform="rotate(72 32 32)"/>
+    <ellipse cx="32" cy="14" rx="10" ry="14" transform="rotate(144 32 32)"/>
+    <ellipse cx="32" cy="14" rx="10" ry="14" transform="rotate(216 32 32)"/>
+    <ellipse cx="32" cy="14" rx="10" ry="14" transform="rotate(288 32 32)"/>
+  </g>
+  <ellipse cx="32" cy="32" rx="11" ry="8" fill="#044838" transform="rotate(-35 32 32)"/>
+  <path d="M26 28 Q32 34 38 36" fill="none" stroke="#f4ece2" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
