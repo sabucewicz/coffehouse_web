@@ -176,6 +176,24 @@ const PROMO = {
 })();
 
 (function () {
+  const map = document.querySelector("[data-map-embed]");
+  if (!map) return;
+
+  function activate() {
+    map.classList.add("is-active");
+  }
+
+  function deactivate() {
+    map.classList.remove("is-active");
+  }
+
+  map.addEventListener("click", activate);
+  map.addEventListener("mouseleave", deactivate);
+  map.addEventListener("blur", deactivate, true);
+  document.addEventListener("scroll", deactivate, { passive: true });
+})();
+
+(function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const targets = document.querySelectorAll(
