@@ -89,15 +89,32 @@ const PROMO = {
 (function () {
   if (!PROMO.enabled) return;
 
-  /* Nie pokazuj popupu na stronie aktualności — użytkownik już tam jest */
-  if (/\/aktualnosci\/?$/i.test(location.pathname)) return;
-
   const storageKey = "kawonia-promo-seen:" + PROMO.id;
-  try {
-    if (sessionStorage.getItem(storageKey)) return;
-  } catch (err) {
-    /* private mode — still show */
+  const onAktualnosci = /(?:^|\/)aktualnosci(?:\/|$)/i.test(location.pathname);
+
+  function markSeen() {
+    try {
+      localStorage.setItem(storageKey, "1");
+    } catch (err) {
+      /* private mode / file:// — ignore */
+    }
   }
+
+  function hasSeen() {
+    try {
+      return localStorage.getItem(storageKey) === "1";
+    } catch (err) {
+      return false;
+    }
+  }
+
+  /* Na aktualnościach nie pokazuj — i zapamiętaj, że ofertę już widziano */
+  if (onAktualnosci) {
+    markSeen();
+    return;
+  }
+
+  if (hasSeen()) return;
 
   const script = document.querySelector('script[src*="js/main.js"]');
   const base = script ? script.getAttribute("src").replace(/js\/main\.js$/, "") : "";
@@ -127,7 +144,7 @@ const PROMO = {
     PROMO.text +
     "</p>" +
     '<div class="promo-dialog-actions">' +
-    '<a class="btn btn-primary" href="' +
+    '<a class="btn btn-primary promo-dialog-cta" href="' +
     base +
     PROMO.href +
     '">' +
@@ -138,14 +155,6 @@ const PROMO = {
     "</div>" +
     "</div>";
 
-  function markSeen() {
-    try {
-      sessionStorage.setItem(storageKey, "1");
-    } catch (err) {
-      /* ignore */
-    }
-  }
-
   function closePromo() {
     markSeen();
     if (typeof dialog.close === "function") dialog.close();
@@ -155,7 +164,9 @@ const PROMO = {
 
   dialog.querySelector(".promo-dialog-close").addEventListener("click", closePromo);
   dialog.querySelector(".promo-dialog-dismiss").addEventListener("click", closePromo);
+  dialog.querySelector(".promo-dialog-cta").addEventListener("click", markSeen);
   dialog.addEventListener("close", markSeen);
+  dialog.addEventListener("cancel", markSeen);
   dialog.addEventListener("click", function (event) {
     if (event.target === dialog) closePromo();
   });
