@@ -89,12 +89,13 @@ const PROMO = {
 (function () {
   if (!PROMO.enabled) return;
 
+  /* sessionStorage = tylko do zamknięcia karty; nowa karta / nowe otwarcie = popup znowu */
   const storageKey = "kawonia-promo-seen:" + PROMO.id;
   const onAktualnosci = /(?:^|\/)aktualnosci(?:\/|$)/i.test(location.pathname);
 
   function markSeen() {
     try {
-      localStorage.setItem(storageKey, "1");
+      sessionStorage.setItem(storageKey, "1");
     } catch (err) {
       /* private mode / file:// — ignore */
     }
@@ -102,16 +103,17 @@ const PROMO = {
 
   function hasSeen() {
     try {
-      return localStorage.getItem(storageKey) === "1";
+      return sessionStorage.getItem(storageKey) === "1";
     } catch (err) {
       return false;
     }
   }
 
-  /* Na aktualnościach nie pokazuj — i zapamiętaj, że ofertę już widziano */
-  if (onAktualnosci) {
-    markSeen();
-    return;
+  /* posprzątaj stary zapis z localStorage (wcześniejsza wersja blokowała popup na stałe) */
+  try {
+    localStorage.removeItem(storageKey);
+  } catch (err) {
+    /* ignore */
   }
 
   if (hasSeen()) return;
@@ -122,6 +124,17 @@ const PROMO = {
   const dialog = document.createElement("dialog");
   dialog.className = "promo-dialog";
   dialog.setAttribute("aria-labelledby", "promo-title");
+
+  const primaryAction = onAktualnosci
+    ? '<button type="button" class="btn btn-primary promo-dialog-dismiss">OK</button>'
+    : '<a class="btn btn-primary promo-dialog-cta" href="' +
+      base +
+      PROMO.href +
+      '">' +
+      PROMO.cta +
+      "</a>" +
+      '<button type="button" class="btn btn-ghost promo-dialog-dismiss">Zamknij</button>';
+
   dialog.innerHTML =
     '<div class="promo-dialog-shell">' +
     '<button type="button" class="promo-dialog-close" aria-label="Zamknij">&times;</button>' +
@@ -144,13 +157,7 @@ const PROMO = {
     PROMO.text +
     "</p>" +
     '<div class="promo-dialog-actions">' +
-    '<a class="btn btn-primary promo-dialog-cta" href="' +
-    base +
-    PROMO.href +
-    '">' +
-    PROMO.cta +
-    "</a>" +
-    '<button type="button" class="btn btn-ghost promo-dialog-dismiss">Zamknij</button>' +
+    primaryAction +
     "</div>" +
     "</div>" +
     "</div>";
@@ -163,8 +170,11 @@ const PROMO = {
   document.body.appendChild(dialog);
 
   dialog.querySelector(".promo-dialog-close").addEventListener("click", closePromo);
-  dialog.querySelector(".promo-dialog-dismiss").addEventListener("click", closePromo);
-  dialog.querySelector(".promo-dialog-cta").addEventListener("click", markSeen);
+  dialog.querySelectorAll(".promo-dialog-dismiss").forEach(function (btn) {
+    btn.addEventListener("click", closePromo);
+  });
+  const cta = dialog.querySelector(".promo-dialog-cta");
+  if (cta) cta.addEventListener("click", markSeen);
   dialog.addEventListener("close", markSeen);
   dialog.addEventListener("cancel", markSeen);
   dialog.addEventListener("click", function (event) {
