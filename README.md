@@ -1,8 +1,33 @@
-# Kawonia — strona wizytówkowa
+# Kawonia — Floral Café Showcase Website
 
-Statyczna strona kawiarni florystycznej **Kawonia** (Mysłowice). Czysty HTML, CSS i niewielki vanilla JS — działa bez budowania na GitHub Pages i Netlify.
+[Wersja polska poniżej / Polish version below](#-wersja-polska)
 
-## Uruchomienie lokalne
+---
+
+## 🇬🇧 English Version
+
+A static, responsive multi-page showcase website designed and built for **Kawonia**, a flower and coffee shop in Mysłowice, Poland. Built with **semantic HTML**, **custom CSS**, and **vanilla JavaScript** — requires no build step and deploys directly to **GitHub Pages** or **Netlify**.
+
+### 🚀 Key Features
+
+- **Multi-Page Structure:** Dedicated subpages for Home (`/`), Flower Shop (`/kwiaciarnia/`), Café (`/kawiarnia/`), Gallery (`/galeria/`), Contact (`/kontakt/`), and Reservation (`/rezerwacja/`).
+- **Zero-Build Static Architecture:** Relative asset paths throughout the site, locally hosted **Barlow** typography (`@font-face` + `font-display: swap`), and lightweight SVG brand assets.
+- **Theme & SEO Ready:** Supports brand themes (`theme-beige`, `theme-green`), structured metadata (`canonical`, Open Graph, JSON-LD), `robots.txt`, and `sitemap.xml`.
+- **Configurable Reservation Form:** Client-side validation with pluggable `FORM_ENDPOINT` support (e.g., Google Forms / Apps Script) and safe fallback test mode.
+
+### 🧰 Tech Stack
+
+- **Markup & Styling:** Semantic HTML5, CSS3 (custom design tokens & themes)
+- **Interactivity:** Vanilla JavaScript (ES)
+- **Hosting Targets:** GitHub Pages, Netlify (static publish `.`)
+
+---
+
+## 🇵🇱 Wersja Polska
+
+Statyczna, responsywna strona wizytówkowa kawiarni florystycznej **Kawonia** (Mysłowice). Czysty HTML, CSS i niewielki vanilla JS — działa bez budowania na GitHub Pages i Netlify.
+
+### Uruchomienie lokalne
 
 1. Otwórz folder projektu w terminalu.
 2. Uruchom prosty serwer HTTP (ważne przy testowaniu ścieżek; nie otwieraj plików przez `file://` jeśli nie musisz):
@@ -19,7 +44,7 @@ npx --yes serve -p 8080
 
 Struktura podstron: `/`, `/kwiaciarnia/`, `/kawiarnia/`, `/galeria/`, `/kontakt/`, `/rezerwacja/`.
 
-## Wdrożenie na GitHub Pages
+### Wdrożenie na GitHub Pages
 
 1. Wrzuć projekt do repozytorium GitHub.
 2. **Settings → Pages → Build and deployment**: Source = *Deploy from a branch*.
@@ -28,7 +53,7 @@ Struktura podstron: `/`, `/kwiaciarnia/`, `/kawiarnia/`, `/galeria/`, `/kontakt/
    `https://<user>.github.io/<nazwa-repo>/`
 5. Wszystkie ścieżki w projekcie są **względne**, więc strona działa zarówno pod root domeny, jak i pod ścieżką z nazwą repozytorium.
 
-## Wdrożenie na Netlify
+### Wdrożenie na Netlify
 
 1. Zaloguj się na [Netlify](https://www.netlify.com/) i wybierz *Add new site → Import an existing project* (połącz repo) albo przeciągnij folder (*Deploy manually*).
 2. Build settings:
@@ -36,7 +61,7 @@ Struktura podstron: `/`, `/kwiaciarnia/`, `/kawiarnia/`, `/galeria/`, `/kontakt/
    - **Publish directory**: `.` (root projektu)
 3. Deploy. Netlify nada adres `*.netlify.app`; domenę własną dodasz w *Domain management*.
 
-## Podmiana zdjęć
+### Podmiana zdjęć
 
 Folder `images/` zawiera lokalne zaślepki SVG w kolorach marki. Nic nie jest pobierane z internetu.
 
@@ -64,7 +89,7 @@ Zmień atrybut `src` w HTML na nową ścieżkę względną, np. `images/hero-rea
 - `images/logo-light.svg` — wersja na zielonym tle (beżowy kwiat).
 - Docelowo podmień na logo od klientki (najlepiej SVG lub PNG z przezroczystością).
 
-## Podmiana menu i cen
+### Podmiana menu i cen
 
 Treści oferty są **wpisane w HTML** (indeksowane przez wyszukiwarki), nie w JS.
 
@@ -75,7 +100,7 @@ Treści oferty są **wpisane w HTML** (indeksowane przez wyszukiwarki), nie w JS
 | Godziny | `kontakt/index.html` (+ JSON-LD w `<head>`) | lista godzin |
 | Opisy | wszystkie `index.html` | akapity oznaczone komentarzem `TODO` |
 
-## Formularz rezerwacji
+### Formularz rezerwacji
 
 W `js/main.js` na górze:
 
@@ -87,7 +112,7 @@ Gdy stała jest pusta, formularz pokazuje komunikat o wersji testowej (nic nie w
 
 **Docelowo:** podłącz konto Google kawiarni (Formularze Google lub Apps Script) i wklej URL do `FORM_ENDPOINT`. Upewnij się, że nazwy pól w formularzu HTML odpowiadają polom w Google Forms / skrypcie.
 
-## Podpięcie własnej domeny
+### Podpięcie własnej domeny
 
 1. Kup / wskaż domenę u rejestratora.
 2. **GitHub Pages**: Settings → Pages → Custom domain; dodaj rekordy DNS (A / CNAME) wg instrukcji GitHub.
@@ -96,7 +121,7 @@ Gdy stała jest pusta, formularz pokazuje komunikat o wersji testowej (nic nie w
 
 Po podpięciu domeny zaktualizuj `canonical`, Open Graph, `sitemap.xml` i JSON-LD (zamień `https://www.example.com`).
 
-## Lista rzeczy przed publikacją
+### Lista rzeczy przed publikacją
 
 - [ ] Usunąć `<meta name="robots" content="noindex">` z każdej podstrony (oraz komentarz TODO przy nim).
 - [ ] W `robots.txt` usunąć `Disallow: /` (albo zmienić na `Allow: /`) i poprawić URL sitemapy.
@@ -107,7 +132,7 @@ Po podpięciu domeny zaktualizuj `canonical`, Open Graph, `sitemap.xml` i JSON-L
 - [ ] Ustawić `FORM_ENDPOINT` w `js/main.js` i przetestować wysyłkę.
 - [ ] Sprawdzić Lighthouse (Performance, Accessibility, Best Practices, SEO) — cel 95+.
 
-## Struktura plików
+### Struktura plików
 
 ```
 index.html
@@ -126,12 +151,12 @@ sitemap.xml
 README.md
 ```
 
-## Kolory i motywy
+### Kolory i motywy
 
 - Zielony: `#044838`
 - Beżowy: `#f4ece2`
 - Motyw przez klasę na `body`: `theme-beige` lub `theme-green` (bez JS).
 
-## Czcionka
+### Czcionka
 
 Barlow (400–800) hostowana lokalnie w `fonts/` przez `@font-face` z `font-display: swap`. Zapas: `system-ui`.
