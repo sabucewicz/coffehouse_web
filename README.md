@@ -6,7 +6,9 @@
 
 ## 🇬🇧 English Version
 
-A static, responsive multi-page showcase website designed and built for **Kawonia**, a flower and coffee shop in Mysłowice, Poland. Built with **semantic HTML**, **custom CSS**, and **vanilla JavaScript** — requires no build step and deploys directly to **GitHub Pages** or **Netlify**.
+> **Status:** In Progress — under active development.
+
+A static, responsive multi-page showcase website being designed and built for **Kawonia**, a flower and coffee shop in Mysłowice, Poland. Built with **semantic HTML**, **custom CSS**, and **vanilla JavaScript** — requires no build step and deploys directly to **GitHub Pages** or **Netlify**.
 
 ### 🚀 Key Features
 
@@ -24,6 +26,8 @@ A static, responsive multi-page showcase website designed and built for **Kawoni
 ---
 
 ## 🇵🇱 Wersja Polska
+
+> **Status:** W trakcie prac (*In Progress*).
 
 Statyczna, responsywna strona wizytówkowa kawiarni florystycznej **Kawonia** (Mysłowice). Czysty HTML, CSS i niewielki vanilla JS — działa bez budowania na GitHub Pages i Netlify.
 
